@@ -38,7 +38,7 @@ with DAG(
         job_name='transform_parquet_job',
         main='gs://jobs_dataproc/tlc_rm_dup_and_col_MULTIFILES.py',
         region='us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Operador para ejecutar un script de limpieza de nulos
@@ -47,7 +47,7 @@ with DAG(
         job_name='transform_parquet_job',
         main='gs://jobs_dataproc/tlc_rm_nan_MULTIFILES.py',
         region='us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Operador para cargar el archivo en BigQuery
@@ -56,7 +56,7 @@ with DAG(
         job_name='transform_parquet_job',
         main='gs://jobs_dataproc/load_to_bq_MULTIFILES.py',
         region='us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Weather cs_to_bq
@@ -65,7 +65,7 @@ with DAG(
         job_name = 'cs_to_bq_weather',
         main = 'gs://jobs_dataproc/cs_to_bigquery_weather.py',
         region = 'us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Air Pollution cs_to_bq
@@ -74,7 +74,7 @@ with DAG(
         job_name = 'cs_to_bq_airPollution',
         main = 'gs://jobs_dataproc/cs_to_bigquery_airPollution.py',
         region = 'us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Fuel Consumption cs_to_bq
@@ -83,7 +83,7 @@ with DAG(
         job_name = 'cs_to_bq_fuelConsumption',
         main = 'gs://jobs_dataproc/cs_to_bq_fuelConsumption.py',
         region = 'us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Alternative Fuel Vehicles cs_to_bq
@@ -92,7 +92,7 @@ with DAG(
         job_name = 'cs_to_bq_altFuelVehicles',
         main = 'gs://jobs_dataproc/cs_to_bq_altFuelVehicles.py',
         region = 'us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
     # Car prices cs_to_bq
@@ -101,7 +101,7 @@ with DAG(
         job_name = 'cs_to_bq_carPrices',
         main = 'gs://jobs_dataproc/cs_to_bigquery_carPrices.py',
         region = 'us-central1',
-        cluster_name='cluster-524f'
+        cluster_name='cluster-4c5b'
     )
 
 

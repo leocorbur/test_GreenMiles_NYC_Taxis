@@ -13,7 +13,7 @@ months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 for year in years:
     for month in months:
         # Define la ruta del archivo Parquet en Google Cloud Storage
-        gcs_path_input = f"gs://files_intermediate/parquet/intermediate_fhvhv_tripdata_{year}-{month}_step2.parquet"
+        gcs_path_input = f"gs://tmpr_files/parquet/intermediate_fhvhv_tripdata_{year}-{month}_step2.parquet"
         
         try:
             # Define el esquema para las columnas
@@ -33,13 +33,13 @@ for year in years:
             df = spark.read.schema(custom_schema).parquet(gcs_path_input)
 
             # Configura las opciones para BigQuery
-            bigquery_project = "spheric-base-407402"
-            bigquery_dataset = "nyc_taxis"
+            bigquery_project = "proyecto-de-prueba-23"
+            bigquery_dataset = "greenMiles"
             bigquery_table = "tlc"
 
             # Escribe el DataFrame en BigQuery
             df.write.format("bigquery") \
-                .option("temporaryGcsBucket", "files_intermediate") \
+                .option("temporaryGcsBucket", "tmpr_files") \
                 .option("table", f"{bigquery_project}:{bigquery_dataset}.{bigquery_table}") \
                 .mode("append") \
                 .save()

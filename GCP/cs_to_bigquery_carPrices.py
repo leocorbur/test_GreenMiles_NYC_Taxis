@@ -5,20 +5,20 @@ spark = SparkSession.builder.appName("Car Prices").getOrCreate()
 
 
 # Ruta del archivo CSV
-gcs_path_input = "gs://files_raw/csv/carPrices.csv"
+gcs_path_input = "gs://raw-files/csv/carPrices.csv"
 
 # Leer el archivo CSV en un DataFrame de PySpark
 df_spark = spark.read.csv(gcs_path_input, header=True, inferSchema=True, ignoreLeadingWhiteSpace=True)
 
 
 # Configura las opciones para BigQuery
-bigquery_project = "spheric-base-407402"
-bigquery_dataset = "nyc_taxis"
+bigquery_project = "proyecto-de-prueba-23"
+bigquery_dataset = "greenMiles"
 bigquery_table = "carPrice"
 
 # Escribe el DataFrame en BigQuery
 df_spark.write.format("bigquery") \
-.option("temporaryGcsBucket", "files_intermediate") \
+.option("temporaryGcsBucket", "tmpr_files") \
 .option("table", f"{bigquery_project}:{bigquery_dataset}.{bigquery_table}") \
 .mode("overwrite") \
 .save()

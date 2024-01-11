@@ -9,12 +9,12 @@ spark = SparkSession.builder.appName("airPollution").getOrCreate()
 spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
 
 # Ruta del archivo JSON
-gcs_path_input = f"gs://files_raw/json/airPollution.json"
+gcs_path_input = f"gs://raw-files/json/airPollution.json"
 
 
 # Verifica si el archivo existe antes de intentar leerlo con Spark
 client = storage.Client()
-bucket_name = "files_raw"  
+bucket_name = "raw-files"  
 blob_name = f"json/airPollution.json"
 blob = client.bucket(bucket_name).get_blob(blob_name)
 
@@ -37,13 +37,13 @@ if blob is not None and blob.exists():
                 "list.components.no2", "list.components.pm2_5", "list.components.pm10")
     
     # Configura las opciones para BigQuery
-    bigquery_project = "spheric-base-407402"
-    bigquery_dataset = "nyc_taxis"
+    bigquery_project = "proyecto-de-prueba-23"
+    bigquery_dataset = "greenMiles"
     bigquery_table = "airPollution"
 
     # Escribe el DataFrame en BigQuery
     df.write.format("bigquery") \
-    .option("temporaryGcsBucket", "files_intermediate") \
+    .option("temporaryGcsBucket", "tmpr_files") \
     .option("table", f"{bigquery_project}:{bigquery_dataset}.{bigquery_table}") \
     .mode("overwrite") \
     .save()

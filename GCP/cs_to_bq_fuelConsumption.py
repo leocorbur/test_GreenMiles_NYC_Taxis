@@ -26,10 +26,10 @@ schema = StructType([
 
 
 # Lista de archivos
-gcs_path_input = ["gs://files_raw/csv/fuelConsumption_2020.csv", 
-                  "gs://files_raw/csv/fuelConsumption_2021.csv", 
-                  "gs://files_raw/csv/fuelConsumption_2022.csv", 
-                  "gs://files_raw/csv/fuelConsumption_2023.csv"]
+gcs_path_input = ["gs://raw-files/csv/fuelConsumption_2020.csv", 
+                  "gs://raw-files/csv/fuelConsumption_2021.csv", 
+                  "gs://raw-files/csv/fuelConsumption_2022.csv", 
+                  "gs://raw-files/csv/fuelConsumption_2023.csv"]
 
 # DataFrame para almacenar datos combinados
 df_combinado = spark.createDataFrame([], schema=schema)
@@ -92,13 +92,13 @@ for columna_antigua, nuevo_nombre in nuevos_nombres.items():
     df_combinado = df_combinado.withColumnRenamed(columna_antigua, nuevo_nombre)
 
 # Configura las opciones para BigQuery
-bigquery_project = "spheric-base-407402"
-bigquery_dataset = "nyc_taxis"
+bigquery_project = "proyecto-de-prueba-23"
+bigquery_dataset = "greenMiles"
 bigquery_table = "fuelConsumption"
 
 # Escribe el DataFrame en BigQuery
 df_combinado.write.format("bigquery") \
-.option("temporaryGcsBucket", "files_intermediate") \
+.option("temporaryGcsBucket", "tmpr_files") \
 .option("table", f"{bigquery_project}:{bigquery_dataset}.{bigquery_table}") \
 .mode("overwrite") \
 .save()

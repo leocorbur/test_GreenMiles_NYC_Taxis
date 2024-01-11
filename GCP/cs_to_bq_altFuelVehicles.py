@@ -8,11 +8,11 @@ spark = SparkSession.builder.appName("Alternative Fuel Vehicles").getOrCreate()
 
 
 # Ruta del archivo CSV
-gcs_path_input = "gs://files_raw/csv/Alternative Fuel Vehicles US.csv"
+gcs_path_input = "gs://raw-files/csv/Alternative Fuel Vehicles US.csv"
 
 # Verifica si el archivo existe antes de intentar leerlo con Spark
 client = storage.Client()
-bucket_name = "files_raw"  
+bucket_name = "raw-files"  
 blob_name = f"csv/Alternative Fuel Vehicles US.csv"
 blob = client.bucket(bucket_name).get_blob(blob_name)
 
@@ -69,13 +69,13 @@ if blob is not None and blob.exists():
         df_spark = df_spark.withColumn(column, when(col(column).isNull(), 0).otherwise(col(column)))
 
     # Configura las opciones para BigQuery
-    bigquery_project = "spheric-base-407402"
-    bigquery_dataset = "nyc_taxis"
+    bigquery_project = "proyecto-de-prueba-23"
+    bigquery_dataset = "greenMiles"
     bigquery_table = "altFuelVehicles"
 
     # Escribe el DataFrame en BigQuery
     df_spark.write.format("bigquery") \
-    .option("temporaryGcsBucket", "files_intermediate") \
+    .option("temporaryGcsBucket", "tmpr_files") \
     .option("table", f"{bigquery_project}:{bigquery_dataset}.{bigquery_table}") \
     .mode("overwrite") \
     .save()
