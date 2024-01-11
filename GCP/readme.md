@@ -4,16 +4,16 @@ Este repositorio contiene scripts de shell para facilitar el proceso de transfer
 
 ### 1. Transferencia de datos brutos a Cloud Storage
 ```bash
-curl -O https://raw.githubusercontent.com/leocorbur/testGreenMiles_NYC_Taxis/main/GCP/a_rawData_to_cloudStorage.sh
-chmod +x a_rawData_to_cloudStorage.sh
-./a_rawData_to_cloudStorage.sh
+curl -O https://raw.githubusercontent.com/leocorbur/test_GreenMiles_NYC_Taxis/main/GCP/rawData_to_cloudStorage.sh
+chmod +x rawData_to_cloudStorage.sh
+./rawData_to_cloudStorage.sh
 ```
 
 ### 2. Transferencia de scripts Pyspark a Cloud Storage
 ```bash
-curl -O https://raw.githubusercontent.com/leocorbur/testGreenMiles_NYC_Taxis/main/GCP/b_pyScripts_to_cloudStorage.sh
-chmod +x b_pyScripts_to_cloudStorage.sh
-./b_pyScripts_to_cloudStorage.sh
+curl -O https://raw.githubusercontent.com/leocorbur/test_GreenMiles_NYC_Taxis/main/GCP/pyScripts_to_cloudStorage.sh
+chmod +x pyScripts_to_cloudStorage.sh
+./pyScripts_to_cloudStorage.sh
 ```
 
 ### 3. Transferencia de script DAG a la carpeta dags
