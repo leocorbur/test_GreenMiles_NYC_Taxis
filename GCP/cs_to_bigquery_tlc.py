@@ -7,8 +7,8 @@ spark = SparkSession.builder.appName("process_and_load_to_bq").getOrCreate()
 # Evita que se genere _success
 spark.conf.set("mapreduce.fileoutputcommitter.marksuccessfuljobs", "false")
 
-years = ["2020", "2021", "2022", "2023"]
-months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+years = ["2020"]
+months = ["01", "02"]
 
 for year in years:
     for month in months:

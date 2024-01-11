@@ -3,9 +3,6 @@
 """
 url_base='https://raw.githubusercontent.com/leocorbur/test_GreenMiles_NYC_Taxis/main/GCP/'
 files=(
-  "tlc_rm_dup_and_col_MULTIFILES.py" \
-  "tlc_rm_nan_MULTIFILES.py" \
-  "load_to_bq_MULTIFILES.py" \
   "cs_to_bigquery_tlc.py" \
   "cs_to_bigquery_airPollution.py" \
   "cs_to_bigquery_weather.py" \
